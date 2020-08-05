@@ -6,9 +6,9 @@ class Solution{
     vector<char>& reverseString(vector<char>& s){
         char temp;
         if(s.empty()){
-            return 0;
+            return ;
         }
-        for(int i=0;i<=s.size()/2;i++){
+        for(int i=0;i<s.size()/2;i++){
             temp=s[i];
             s[i]=s[(s.size()-i)-1];
             s[(s.size()-i)-1]=temp;
