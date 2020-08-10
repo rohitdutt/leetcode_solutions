@@ -1,7 +1,5 @@
 #include<iostream>
 using namespace std;
-class LRU(stl)
-{
 
 public:
 };
