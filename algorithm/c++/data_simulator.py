@@ -21,7 +21,24 @@ def simulateCustomer(number):
     code= requests.post(url,data=customer_data_json,headers=headers)
     print(code.text)
 
-if __name__=="__main__":     
-    for i in range(5000):  
-        simulateCustomer(i)
+def simulateProduct(number):
+    product_data={}
+    product_data["productId"]="prod"+str(number)
+    product_data["itemName"]=fake.word()+" "+fake.word()
+    product_data["barcode"]=fake.ean(length=13)
+    product_data["pricePerUnit"]=fake.random_int(10,50000)
+    product_data["sellPrice"]= product_data["pricePerUnit"] + ((product_data["pricePerUnit"] * 10)/100)
+    product_data["profitPerUnit"]= product_data["sellPrice"] - product_data["pricePerUnit"]
+    product_data["availableUnit"]=fake.random_int(1,10000)
+    product_data_json=json.dumps(product_data)
+    url ="http://localhost:8080/api/v1/product-create"
+    headers = {'content-type':'application/json'}
+    code= requests.post(url,data=product_data_json,headers=headers)
+    print(code.text)
+
     
+
+if __name__=="__main__":     
+    for i in range(10000):  
+        # simulateCustomer(i)
+        simulateProduct(i)
