@@ -36,9 +36,23 @@ def simulateProduct(number):
     code= requests.post(url,data=product_data_json,headers=headers)
     print(code.text)
 
-    
+def simulateReview(number):
+    review_data={}
+    review_data["reviewId"]="rev"+str(number)
+    review_data["productId"]="prod"+str(number)
+    review_data["customerId"]="cust"+str(fake.random_int(0,4999))
+    review_data["dateOfReview"]=str(fake.date_of_birth())
+    review_data["review"]=fake.text()
+    review_data["rating"]=fake.random_int(1,10)
+    review_data_json=json.dumps(review_data)
+    url ="http://localhost:8080/api/v1/review-create"
+    headers = {'content-type':'application/json'}
+    code= requests.post(url,data=review_data_json,headers=headers)
+    print(code.text)
 
 if __name__=="__main__":     
-    for i in range(10000):  
-        # simulateCustomer(i)
-        simulateProduct(i)
+    for i in range(9999): 
+        for j in range(fake.random_int(50,1000)): 
+            # simulateCustomer(i)
+            #simulateProduct(i)
+            simulateReview(i)
