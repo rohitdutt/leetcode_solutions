@@ -14,10 +14,15 @@ public:
             if(um1[nums.at(i)]==nums.at(i)){
                 answer.push_back(i);
             }else{
-                temp=target-i;
-                um1[nums.at(i)]=temp;
+                temp=target-nums.at(i);
+                cout<<"temp"<<temp<<endl;
+                um1[nums.at(i)]=i;
+                cout<<um1[nums.at(i)];
             }
-        }              
+        } 
+        for(int i:answer){
+            cout<<i;
+        }             
         return answer;
     }
 };
@@ -26,7 +31,5 @@ int main(){
     Solution s1;
     vector<int> values={2,3,5,6,7};
     values=s1.twoSum(values,9);
-    for(int i:values){
-        cout<<i;
-    }
+
 }
