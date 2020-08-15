@@ -30,29 +30,35 @@ def simulateProduct(number):
     product_data["sellPrice"]= product_data["pricePerUnit"] + ((product_data["pricePerUnit"] * 10)/100)
     product_data["profitPerUnit"]= product_data["sellPrice"] - product_data["pricePerUnit"]
     product_data["availableUnit"]=fake.random_int(1,10000)
+    #product_data["reviews"]=simulateReview(product_data["productId"])
     product_data_json=json.dumps(product_data)
     url ="http://localhost:8080/api/v1/product-create"
     headers = {'content-type':'application/json'}
     code= requests.post(url,data=product_data_json,headers=headers)
     print(code.text)
 
-def simulateReview(number):
-    review_data={}
-    review_data["reviewId"]="rev"+str(number)
-    review_data["productId"]="prod"+str(number)
-    review_data["customerId"]="cust"+str(fake.random_int(0,4999))
-    review_data["dateOfReview"]=str(fake.date_of_birth())
-    review_data["review"]=fake.text()
-    review_data["rating"]=fake.random_int(1,10)
-    review_data_json=json.dumps(review_data)
-    url ="http://localhost:8080/api/v1/review-create"
-    headers = {'content-type':'application/json'}
-    code= requests.post(url,data=review_data_json,headers=headers)
-    print(code.text)
+
+def simulateReview(prod):
+    list_review=list()
+    
+    for i in range(10):
+        review_data={}
+        review_data["reviewId"]="rev"+str(i)
+        review_data["customerId"]="cust"+str(fake.random_int(0,4999))
+        review_data["dateOfReview"]=str(fake.date_of_birth())
+        review_data["review"]=fake.text()
+        review_data["rating"]=fake.random_int(1,10)
+        review_data["product"]={"productId":"prod6","itemName":"maxime vel","barcode":"0686973135385","pricePerUnit":37322.0,"sellPrice":41054.2,"profitPerUnit":3732.2,"availableUnit":9095}
+        review_data_json=json.dumps(review_data)
+        url ="http://localhost:8080/api/v1/review-create"
+        headers = {'content-type':'application/json'}
+        code= requests.post(url,data=review_data_json,headers=headers)
+        print(code.text)
+        list_review.append(review_data)
+    return list_review
 
 if __name__=="__main__":     
-    for i in range(9999): 
-        for j in range(fake.random_int(50,1000)): 
-            # simulateCustomer(i)
+    for i in range(10): 
+            #simulateCustomer(i)
             #simulateProduct(i)
             simulateReview(i)
