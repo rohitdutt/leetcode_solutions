@@ -11,15 +11,16 @@ def simulateCustomer(number):
     customer_data["mobileNo"]=fake.phone_number()
     customer_data["city"]=fake.city()
     customer_data["pincode"]=fake.random_int(100000,999999)
-    customer_data["country"]="India"
+    customer_data["country"]=fake.country() 
     customer_data["shippingAdress"]=fake.address()
     customer_data["date"]=str(fake.date_of_birth())
-    url ="http://localhost:8080/api/v1/customer-create"
-    customer_data_json=json.dumps(customer_data)
-    headers = {'content-type':'application/json'}
-    code= requests.post(url,data=customer_data_json,headers=headers)
-    print(code)
-    print(code.text)
+    # url ="http://localhost:8080/api/v1/customer-create"
+    # customer_data_json=json.dumps(customer_data)
+    # headers = {'content-type':'application/json'}
+    # code= requests.post(url,data=customer_data_json,headers=headers)
+    # print(code)
+    # print(code.text)
+    print(customer_data)
 
 
 def simulateProduct(number):
@@ -141,8 +142,8 @@ def simulateUser(number):
 
 if __name__=="__main__":     
     for i in range(5): 
-        simulateCustomer(i)
-        # simulateProduct(i)
+        # simulateCustomer(i)
+        simulateProduct(i)
         # simulateReview(i)
         # simulateOrderDetails("Ord1")
         # simulateOrderDetails(0)
