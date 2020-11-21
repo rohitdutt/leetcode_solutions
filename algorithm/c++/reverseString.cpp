@@ -1,29 +1,31 @@
-#include <iostream>
-#include <vector>
+#include<iostream>
+#include<vector>
 using namespace std;
+
 class Solution{
     public:
-    vector<char>& reverseString(vector<char>& s){
-        char temp;
-        if(s.empty()){
-            return ;
-        }
-        for(int i=0;i<s.size()/2;i++){
-            temp=s[i];
-            s[i]=s[(s.size()-i)-1];
-            s[(s.size()-i)-1]=temp;
+    string reverseTheArray(string& s){
+        int i=0;
+        int j=s.size()-1;
+        int temp=0;
+        while(i<j){
+            temp = s[i];
+            s[i] = s[j];
+            s[j] = temp;
+            i++;
+            j--;
         }
         return s;
     }
 };
- 
-int main(){
-        Solution s1;
-        vector<char> cha;
-        cha=s1.reverseString(cha);
-        for (char c:cha){
-            cout<<c;
-        }
-        
-        return 0;
+
+int main(int argc, char const *argv[])
+{
+    Solution s;
+    string s1="Rohitdutt";
+    s.reverseTheArray(s1);
+    for(char i:s1){
+        cout<<i<<endl;
+    }
+    return 0;
 }
