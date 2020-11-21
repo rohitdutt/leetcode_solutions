@@ -8,6 +8,7 @@ class Solution{
         int i=0;
         int j=s.size()-1;
         int temp=0;
+        //using 2pointers
         while(i<j){
             temp = s[i];
             s[i] = s[j];
@@ -16,6 +17,7 @@ class Solution{
             j--;
         }
         return s;
+
     }
 };
 
