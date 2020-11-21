@@ -1,10 +1,15 @@
 #include<iostream>
 #include<vector>
+#include<list>
+#include<map>
 using namespace std;
 
 class Solution{
     int res=0;
+    map<int,list<int>> map1;
 public: 
+/* Solution in O(n^2)
+
     int divisiblePairSum(vector<int> v1 , int k){
         for(int i=0;i<v1.size();i++){
             for(int j=0;j<v1.size();j++){
@@ -15,7 +20,33 @@ public:
                     }
                 }
             }
+    }
         }
+        return res;
+    */
+
+   int divisiblePairSum(vector<int> v1 , int k){
+       map<int,int> v2;
+        for(int i=0;i<v1.size();i++){     
+            //    if (map1.find(v1[i]%k) == map1.end()){
+            //         std::pair<int,list<int>> keyValue (v1[i]%k,{v1[i]});
+            //         map1.insert(keyValue);
+            //         // map1[v1[i]%k]=v1[i]; 
+            //    }else{
+                //    map1.at(v1[i]%k)+=1;  
+                    // map1[v1[i]%k].push_back(v1[i]); 
+
+            //    }
+            v2.push_back(v1[i]%k);
+        }
+
+        for(int i=0;i<v1.size();i++){
+            cout<<v1[i]<<" "<<v2[i]<<endl;
+        }
+
+        // for(auto& it:map1){
+        //     cout<<it.first<<" "<<it.second.size()<<endl;
+        // }
         return res;
     }
 };
