@@ -4,7 +4,6 @@ using namespace std;
 
 class Solution{
     unordered_map<char,int> um1;
-    unordered_map<char , int>::iterator it;
     public:
     void noOfDuplicateInString(string s){
         for(char c:s){
