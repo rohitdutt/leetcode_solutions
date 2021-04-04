@@ -12,74 +12,17 @@ public:
     }
 };
 
-// class LinkedList
-// {
-//     Node *head;
-//     Node *tail;
-
-// public:
-//     void append(int data)
-//     {
-//         Node *current = head;
-//         if (head == nullptr)
-//         {
-//             head = new Node(data);
-//             return;
-//         }
-
-//         while (current->next != nullptr)
-//         {
-//             current = current->next;
-//         }
-//         current->next = new Node(data);
-//     }
-
-//     void prepand(int data)
-//     {
-//         Node *newHead = new Node(data);
-//         newHead->next = head;
-//         head = newHead;
-//     }
-
-//     void deleteValue(int value)
-//     {
-//         if (head == nullptr)
-//         {
-//             return;
-//         }
-
-//         if (head->data == value)
-//         {
-//             head = head->next;
-//             return;
-//         }
-
-//         Node *current = head;
-//         while (current->next != nullptr)
-//         {
-//             if (current->next->data == value)
-//             {
-//                 current->next = current->next->next;
-//                 return;
-//             }
-//             current = current->next;
-//         }
-//     }
-
-//     void printList()
-//     {
-//         Node *current = head;
-//         while (current->next != nullptr)
-//         {
-//             cout << current->data << endl;
-//             current = current->next;
-//         }
-//         cout << current->data << endl;
-//     }
-// };
-
 class MyLinkedList
 {
+    void print(Node *currentNode)
+    {
+        if (currentNode != nullptr)
+        {
+            print(currentNode->next);
+            cout << currentNode->val << endl;
+        }
+    }
+
 public:
     Node *head;
     int length;
@@ -203,28 +146,22 @@ public:
         }
         cout << current->val << endl;
     }
+
+    void printReverse()
+    {
+        print(head);
+    }
 };
 
 int main(int argc, char const *argv[])
 {
     MyLinkedList *list = new MyLinkedList();
-    list->addAtHead(4);
-    cout << list->get(1) << endl;
-    cout << "~~~~~~~~~~~~~~~~~~~~~" << endl;
-    list->addAtHead(1);
-    list->addAtHead(5);
-    list->deleteAtIndex(3);
-    list->addAtHead(7);
-    cout << list->get(3) << endl;
-    cout << list->get(3) << endl;
-    cout << list->get(3) << endl;
-    list->addAtHead(1);
-    list->deleteAtIndex(4);
-    // list->addAtIndex(0, 10);
-    // list->addAtIndex(0, 20);
-    // list->addAtIndex(1, 30);
-    // cout << list->get(0) << endl;
-    // list->deleteAtIndex(0);
-    // cout << list->get(0) << endl;
+    list->addAtTail(2);
+    list->addAtTail(23);
+    list->addAtTail(245);
+    list->addAtTail(28);
+    list->printList();
+    cout << "--------" << endl;
+    list->printReverse();
     return 0;
 }
